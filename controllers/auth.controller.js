@@ -60,10 +60,10 @@ exports.signin = (req, res) => {
 
       console.log(`attempt ${updateToken}`);
       if (updateToken == 0 ) {
-        return res.status(404).send({ message: `Maximum number (3) of attempts reached come back in 1 minute` });
+        return res.status(401).send({ message: `Maximum number (3) of attempts reached come back in 1 minute` });
       }
 
-      return res.status(404).send({ message: `Email Not found. ${updateToken == 0 ? lockedOutMessage : ''}` });
+      return res.status(401).send({ message: `Email Not found. ${updateToken == 0 ? lockedOutMessage : ''}` });
     }
 
     let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -83,7 +83,7 @@ exports.signin = (req, res) => {
       }
 
       if (updateToken == 0 ) {
-        return res.status(404).send({ message: lockedOutMessage });
+        return res.status(401).send({ message: lockedOutMessage });
       }
 
       return res.status(401).send({
