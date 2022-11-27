@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./models");
+const Invoice = require("./models/invoice.model");
 const app = express();
 
 // var corsOptions = {
@@ -75,3 +76,4 @@ db.mongoose
 
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/invoice.routes")(app);
